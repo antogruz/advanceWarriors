@@ -18,28 +18,20 @@ TEST(Unit, shouldHarmOpponent)
 	ASSERT_NE(10, opponent.getHealth());
 }
 
-TEST(Unit, shouldInflictItsDamagesToOpponent)
+TEST(Unit, shouldInflictCalculatedDamages)
 {
-	Unit man(2), opponent;
+	Unit man(1, 1), opponent(2, 2);
 
 	man.hit(opponent);
 
 	ASSERT_EQ(8, opponent.getHealth());
 }
 
-TEST(Unit, shouldInflict3DamagesToOpponent)
-{
-	Unit man(3), opponent;
-
-	man.hit(opponent);
-
-	ASSERT_EQ(7, opponent.getHealth());
-}
-
 TEST(Unit, shouldNotHaveNegativeHealth)
 {
-	Unit man(6), opponent;
+	Unit man(2, 1), opponent(2, 2);
 
+	man.hit(opponent);
 	man.hit(opponent);
 	man.hit(opponent);
 
@@ -48,7 +40,7 @@ TEST(Unit, shouldNotHaveNegativeHealth)
 
 TEST(Unit, shouldInflictLessDamageWhenInjured)
 {
-	Unit man(5), opponent(5);
+	Unit man(1, 1), opponent(1, 1);
 
 	man.hit(opponent);
 	opponent.hit(man);
@@ -58,7 +50,7 @@ TEST(Unit, shouldInflictLessDamageWhenInjured)
 
 TEST(Unit, shouldInflictHalfDamageIfHalfHealth)
 {
-	Unit man(5), opponent(5);
+	Unit man(1, 1), opponent(1, 1);
 
 	man.hit(opponent);
 	opponent.hit(man);

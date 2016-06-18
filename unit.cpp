@@ -1,11 +1,13 @@
 #include <math.h>
 
 #include "unit.h"
+#include "damages.h"
 
-Unit::Unit(int power)
+Unit::Unit(int att, int def)
 {
-	this->power = power;
 	health = 10.0;
+	this->att = att;
+	this->def = def;
 }
 
 int Unit::getHealth() const
@@ -13,15 +15,14 @@ int Unit::getHealth() const
 	return ceil(health);
 }
 
-float Unit::getDamage() const
-{
-	return float(getHealth() * power) / 10;
-}
-
 void Unit::hit(Unit & opponent)
 {
-	opponent.health -= getDamage();
-	if (opponent.health < 0)
-		opponent.health = 0;
+	opponent.getInjured(float(getHealth()) / 10.0 * damages(att, opponent.def));
 }
 
+void Unit::getInjured(float damage)
+{
+	health -= damage;
+	if (health < 0)
+		health = 0;
+}
