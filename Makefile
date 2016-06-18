@@ -6,7 +6,9 @@ INCLUDES+=-I $(SRC)
 
 UNIT_TESTS_SRC:= \
 	$(UNIT_TEST_DIR)/unitBehaviour.cpp \
+	$(UNIT_TEST_DIR)/damagesBehaviour.cpp \
 	$(SRC)/unit.cpp \
+	$(SRC)/damages.cpp \
 
 UNIT_TESTS_OBJS:=$(UNIT_TESTS_SRC:%.cpp=$(BIN)/%.o)
 
