@@ -7,6 +7,7 @@ INCLUDES+=-I $(SRC)
 UNIT_TESTS_SRC:= \
 	$(UNIT_TEST_DIR)/unitBehaviour.cpp \
 	$(UNIT_TEST_DIR)/damagesBehaviour.cpp \
+	$(UNIT_TEST_DIR)/mapBehaviour.cpp \
 	$(SRC)/unit.cpp \
 	$(SRC)/damages.cpp \
 
