@@ -7,6 +7,7 @@ class Map {
 		Map(int xdim, int ydim, T emptyValue);
 		void attach(T elem, int x, int y);
 		void remove(int x, int y);
+		void move(int xa, int ya, int xb, int yb);
 		const T & get(int x, int y) const;
 
 	private:
@@ -29,6 +30,9 @@ Map<T>::Map(T emptyValue)
 template <typename T>
 void Map<T>::attach(T elem, int x, int y)
 {
+	if (elem == emptyValue)
+		return;
+
 	std::pair<int,int> key = std::make_pair(x, y);
 	if (data.count(key)) {
 		throw std::invalid_argument("Double Attach in map");
@@ -44,6 +48,15 @@ void Map<T>::remove(int x, int y)
 		throw std::invalid_argument("Erase empty in map");
 	}
 }
+
+template <typename T>
+void Map<T>::move(int xa, int ya, int xb, int yb)
+{
+	T value = get(xa, ya);
+	attach(value, xb, yb);
+	remove(xa, ya);
+}
+
 
 template <typename T>
 const T & Map<T>::get(int x, int y) const

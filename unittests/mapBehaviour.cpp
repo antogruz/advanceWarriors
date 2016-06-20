@@ -81,3 +81,34 @@ TEST_F(MapF, shouldAllowUseOfRemovedSpot)
 	EXPECT_EQ(3, map.get(0, 0));
 	ASSERT_NO_THROW(map.remove(0,0));
 }
+
+TEST_F(MapF, shouldMoveElement)
+{
+	map.attach(5, 1, 1);
+	map.move(1, 1, 0, 0);
+
+	EXPECT_EQ(-1, map.get(1, 1));
+	EXPECT_EQ(5, map.get(0, 0));
+}
+
+TEST_F(MapF, moveShouldLeftMapUnchangedOnException)
+{
+	map.attach(5, 1, 1);
+	map.attach(3, 2, 2);
+
+	try {
+		map.move(1, 1, 2, 2);
+	} catch (std::invalid_argument & e) {
+		EXPECT_EQ(3, map.get(2, 2));
+		EXPECT_EQ(5, map.get(1, 1));
+	}
+}
+
+TEST_F(MapF, moveShouldLeftMapUnchangedOnException2)
+{
+	try {
+		map.move(0, 0, 1, 1);
+	} catch (std::invalid_argument & e) {
+		ASSERT_NO_THROW(map.attach(5, 1, 1));
+	}
+}
