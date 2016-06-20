@@ -10,6 +10,8 @@ class Map {
 		void move(int xa, int ya, int xb, int yb);
 		const T & get(int x, int y) const;
 
+		typename std::map<std::pair<int, int>, T>::iterator begin() { return data.begin(); }
+		typename std::map<std::pair<int, int>, T>::iterator end() { return data.end(); }
 	private:
 		T emptyValue;
 		std::map<std::pair<int, int>, T> data;

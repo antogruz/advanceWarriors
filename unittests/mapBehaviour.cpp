@@ -112,3 +112,28 @@ TEST_F(MapF, moveShouldLeftMapUnchangedOnException2)
 		ASSERT_NO_THROW(map.attach(5, 1, 1));
 	}
 }
+
+TEST_F(MapF, shouldGetIteratorOnNonEmptyValues)
+{
+	map.attach(5, 0, 1);
+	auto it = map.begin();
+
+	EXPECT_EQ(5, it->second);
+	EXPECT_EQ(0, it->first.first);
+	EXPECT_EQ(1, it->first.second);
+}
+
+TEST_F(MapF, shouldGetAllNonEmptyValues)
+{
+	map.attach(5, 0, 1);
+	map.attach(3, 1, 1);
+	map.attach(7, 1, 2);
+
+	int sum = 0;
+	for(auto it = map.begin(); it != map.end(); it++) {
+		sum += it->second;
+	}
+
+	ASSERT_EQ(15, sum);
+}
+
