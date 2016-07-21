@@ -4,7 +4,6 @@ template <typename T>
 class Map {
 	public:
 		Map(T emptyValue);
-		Map(int xdim, int ydim, T emptyValue);
 		void attach(T elem, int x, int y);
 		void remove(int x, int y);
 		void move(int xa, int ya, int xb, int yb);
@@ -15,12 +14,6 @@ class Map {
 	private:
 		T emptyValue;
 		std::map<std::pair<int, int>, T> data;
-};
-
-template <typename T>
-Map<T>::Map(int xdim, int ydim, T emptyValue)
-{
-	this->emptyValue = emptyValue;
 };
 
 template <typename T>
@@ -68,5 +61,29 @@ const T & Map<T>::get(int x, int y) const
 	} catch (std::out_of_range & e) {
 		return emptyValue;
 	}
+}
+
+template <typename T>
+int getMaxRow(Map<T> map)
+{
+	int max = 0;
+	for(auto it = map.begin(); it != map.end(); it++) {
+		int row = it->first.first;
+		if (row > max)
+			max = row;
+	}
+	return max;
+}
+
+template <typename T>
+int getMaxColumn(Map<T> map)
+{
+	int max = 0;
+	for(auto it = map.begin(); it != map.end(); it++) {
+		int col = it->first.second;
+		if (col > max)
+			max = col;
+	}
+	return max;
 }
 

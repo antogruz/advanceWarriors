@@ -137,3 +137,20 @@ TEST_F(MapF, shouldGetAllNonEmptyValues)
 	ASSERT_EQ(15, sum);
 }
 
+TEST_F(MapF, shouldGetMaxRow)
+{
+	map.attach(3, 1, 3);
+	map.attach(2, 2, 2);
+
+	ASSERT_EQ(2, getMaxRow(map));
+}
+
+TEST_F(MapF, shouldGetMaxColumn)
+{
+	map.attach(3, 1, 3);
+	map.attach(2, 2, 2);
+
+	ASSERT_EQ(3, getMaxColumn(map));
+}
+
+

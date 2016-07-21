@@ -8,6 +8,7 @@ UNIT_TESTS_SRC:= \
 	$(UNIT_TEST_DIR)/unitBehaviour.cpp \
 	$(UNIT_TEST_DIR)/damagesBehaviour.cpp \
 	$(UNIT_TEST_DIR)/mapBehaviour.cpp \
+	$(UNIT_TEST_DIR)/displayTests.cpp \
 	$(SRC)/unit.cpp \
 	$(SRC)/damages.cpp \
 
